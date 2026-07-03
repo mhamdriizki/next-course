@@ -8,7 +8,7 @@ export default function DashboardLayout({
   return (
     <div style={{ display: "flex", gap: "2rem" }}>
       {/* Sidebar Khusus Dashboard */}
-      <aside style={{ width: "200px", background: "#f4f4f5", padding: "1rem", borderRadius: "8px" }}>
+      <aside style={{ width: "200px", padding: "1rem", borderRadius: "8px" }}>
         <h3>⚙️ Menu Admin</h3>
         <ul style={{ listStyle: "none", padding: 0 }}>
           <li style={{ marginBottom: "0.5rem" }}>
