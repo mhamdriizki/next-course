@@ -16,6 +16,7 @@ export default function RootLayout({
           <Link href="/blog" style={{ color: "white" }}>Blog</Link>
           <Link href="/dashboard" style={{ color: "white" }}>Dashboard</Link>
           <Link href="/katalog" style={{ color: "white" }}>Katalog</Link>
+          <Link href="/galeri" style={{ color: "white" }}>Galeri</Link>
         </nav>
 
         {/* 'children' adalah tempat halaman (page.tsx) di-inject */}
