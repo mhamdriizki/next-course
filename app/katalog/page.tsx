@@ -1,3 +1,4 @@
+import { cookies } from "next/headers";
 import Link from "next/link";
 
 export default async function KatalogPage({
@@ -14,6 +15,7 @@ export default async function KatalogPage({
 
   return (
     <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+      <CekTemaPengguna />
       <h1>🛒 Katalog Produk</h1>
       
       {/* Form pencarian sederhana HTML bawaan */}
@@ -38,6 +40,24 @@ export default async function KatalogPage({
         <Link href={`/katalog?q=${q}&page=${currentPage - 1}`}>⬅️ Sebelumnya</Link>
         <Link href={`/katalog?q=${q}&page=${currentPage + 1}`}>Selanjutnya ➡️</Link>
       </div>
+    </div>
+  );
+}
+
+async function CekTemaPengguna() {
+  // BREAKING CHANGE: cookies() sekarang wajib di-await!
+  const cookieStore = await cookies();
+  const tema = cookieStore.get("theme")?.value || "light";
+  console.log(cookieStore);
+
+  return (
+    <div style={{ 
+      marginTop: "2rem", 
+      padding: "1rem", 
+      background: tema === "dark" ? "#333" : "#eee",
+      color: tema === "dark" ? "#fff" : "#000"
+    }}>
+      <p>Tema saat ini dari Cookie: {tema}</p>
     </div>
   );
 }
