@@ -1,29 +1,27 @@
-import Link from "next/link";
+import { ReactNode } from "react";
 
 export default function DashboardLayout({
-  children,
+  children, // Slot default (app/dashboard/page.tsx)
+  stats,    // Otomatis dari folder @stats
+  recent,   // Otomatis dari folder @recent
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
+  stats: ReactNode;
+  recent: ReactNode;
 }) {
   return (
-    <div style={{ display: "flex", gap: "2rem" }}>
-      {/* Sidebar Khusus Dashboard */}
-      <aside style={{ width: "200px", padding: "1rem", borderRadius: "8px" }}>
-        <h3>⚙️ Menu Admin</h3>
-        <ul style={{ listStyle: "none", padding: 0 }}>
-          <li style={{ marginBottom: "0.5rem" }}>
-            <Link href="/dashboard">Overview</Link>
-          </li>
-          <li>
-            <Link href="/dashboard/settings">Settings</Link>
-          </li>
-        </ul>
-      </aside>
+    <main style={{ padding: "2rem", fontFamily: "sans-serif" }}>
+      <h1>Panel Admin</h1>
+      <hr />
+      
+      {/* Konten Utama (page.tsx) */}
+      {children} 
 
-      {/* Konten Halaman Dashboard */}
-      <section style={{ flex: 1 }}>
-        {children}
-      </section>
-    </div>
+      {/* Parallel Routes Grid */}
+      <div style={{ display: "flex", gap: "1rem" }}>
+        <div style={{ flex: 1 }}>{stats}</div>
+        <div style={{ flex: 1 }}>{recent}</div>
+      </div>
+    </main>
   );
 }
