@@ -5,11 +5,25 @@
   --foreground: #171717;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+/* 👈 1. TAMBAHKAN BLOK INI DI BAWAH IMPORT
+  Ini menggantikan fungsi theme.extend di tailwind.config.ts lama
+*/
+@theme {
+  /* Custom Warna Brand Gym Kita */
+  --color-brand-utama: #2563eb; /* Biru cakep */
+  --color-brand-gelap: #1e3a8a; 
+  --color-brand-terang: #dbeafe;
+
+  /* Custom Border Radius */
+  --radius-super: 1.5rem;
+}
+
+/* 👈 2. BIARKAN BLOK BAWAAN INI TETAP ADA */
+@layer base {
+  body {
+    background-color: #f9fafb;
+    color: #111827;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -17,10 +31,4 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
-
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
 }
