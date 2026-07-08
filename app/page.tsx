@@ -1,5 +1,5 @@
+// jangan lupa run `bunx shadcn@latest add dialog table` dulu
 // jangan lupa run `bunx shadcn@latest add badge input label` dulu
-// 1. Tambahkan import untuk Badge, Input, dan Label
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -9,9 +9,19 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge"; // 👈 BARU
-import { Input } from "@/components/ui/input"; // 👈 BARU
-import { Label } from "@/components/ui/label"; // 👈 BARU
+import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import {
+  Table,
+  TableBody,
+  TableCaption,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import RequestModulDialog from "./components/RequestModulDialog";
 
 export default function Home() {
   return (
@@ -23,40 +33,40 @@ export default function Home() {
         Pilih modul pembelajaranmu dan mulai bangun aplikasi web modern skala industri.
       </p>
 
-      {/* --- AREA KATALOG COURSE --- */}
+      {/* =========================================
+          AREA 1: KATALOG COURSE (MODUL 5.1 & 5.2) 
+          ========================================= */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mb-12">
         
-        {/* KARTU 1 */}
+        {/* KARTU 1 (Pakai HTML & Tailwind murni) */}
         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 transition-transform hover:-translate-y-1 hover:shadow-md">
           <div className="flex justify-between items-start mb-4">
             <div className="h-12 w-12 bg-blue-100 text-blue-600 rounded-lg flex items-center justify-center text-2xl">
               📘
             </div>
-            {/* 👈 PENGGUNAAN BADGE (Variant Secondary) */}
             <Badge variant="secondary">Dasar</Badge>
           </div>
           <h2 className="text-xl font-bold mb-2 text-slate-800">Modul 1: Fondasi App Router</h2>
           <p className="text-slate-500 mb-6 text-sm">
-            Pelajari konsep Server Components, Layouting, dan Data Fetching tingkat dasar.
+            Pelajari konsep Server Components, Layouting, dan Data Fetching tingkat dasar menggunakan Tailwind CSS murni.
           </p>
           <button className="bg-slate-900 text-white px-4 py-2 rounded-md hover:bg-slate-800 transition-colors w-full font-medium">
             Mulai Belajar
           </button>
         </div>
 
-        {/* KARTU 2 */}
+        {/* KARTU 2 (Telah di-refactor pakai shadcn/ui) */}
         <Card className="transition-transform hover:-translate-y-1 hover:shadow-md border-blue-600 relative overflow-hidden">
           <CardHeader>
             <div className="flex justify-between items-start mb-4">
               <div className="h-12 w-12 bg-blue-600 text-white rounded-lg flex items-center justify-center text-2xl">
                 🎨
               </div>
-              {/* 👈 PENGGUNAAN BADGE (Variant Destructive untuk menarik perhatian) */}
               <Badge variant="destructive" className="animate-pulse">Populer</Badge>
             </div>
-            <CardTitle className="text-slate-900">Modul 2: UI & Styling (shadcn/ui)</CardTitle>
+            <CardTitle className="text-slate-900">Modul 2: UI & Styling</CardTitle>
             <CardDescription className="text-slate-500">
-              Membangun antarmuka premium dengan komponen yang rapi dan dapat dikustomisasi.
+              Membangun antarmuka premium dengan komponen yang rapi, *accessible*, dan dapat dikustomisasi.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -72,9 +82,10 @@ export default function Home() {
         </Card>
       </div>
 
-      {/* --- AREA BARU: FORM WAITLIST --- */}
-      <div className="max-w-md">
-        {/* 👈 PENGGUNAAN CARD UNTUK FORM */}
+      {/* =========================================
+          AREA 2: FORM WAITLIST (MODUL 5.3) 
+          ========================================= */}
+      <div className="max-w-md mb-16">
         <Card>
           <CardHeader>
             <CardTitle>Belum Siap Belajar?</CardTitle>
@@ -82,11 +93,8 @@ export default function Home() {
               Masuk ke daftar tunggu untuk mendapatkan diskon 50% saat Modul 3 rilis.
             </CardDescription>
           </CardHeader>
-          
           <CardContent className="space-y-4">
-            {/* 👈 PENGGUNAAN LABEL DAN INPUT */}
             <div className="space-y-2">
-              {/* Penting: htmlFor di Label harus sama dengan id di Input */}
               <Label htmlFor="email-waitlist">Alamat Email</Label>
               <Input 
                 id="email-waitlist" 
@@ -95,9 +103,7 @@ export default function Home() {
               />
             </div>
           </CardContent>
-          
           <CardFooter>
-            {/* 👈 PENGGUNAAN BUTTON DENGAN VARIANT BERBEDA */}
             <Button variant="outline" className="w-full">
               Gabung Waitlist
             </Button>
@@ -105,6 +111,56 @@ export default function Home() {
         </Card>
       </div>
 
+      {/* =========================================
+          AREA 3: TABLE & DIALOG (MODUL 5.4) 
+          ========================================= */}
+      <div className="max-w-4xl border-t pt-12">
+        <div className="flex justify-between items-end mb-6">
+          <div>
+            <h2 className="text-2xl font-bold text-slate-900">Jadwal Rilis Modul</h2>
+            <p className="text-slate-500">Pantau terus update materi terbaru dari kami.</p>
+          </div>
+          
+          {/* MANGGIL KOMPONEN DIALOG KITA DI SINI */}
+          <RequestModulDialog />
+        </div>
+
+        {/* PENGGUNAAN TABLE SHADCN */}
+        <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+          <Table>
+            <TableCaption className="pb-4">Daftar silabus materi Next.js Masterclass.</TableCaption>
+            <TableHeader className="bg-slate-50">
+              <TableRow>
+                <TableHead className="w-[100px]">ID</TableHead>
+                <TableHead>Topik Pembahasan</TableHead>
+                <TableHead>Status</TableHead>
+                <TableHead className="text-right">Estimasi Rilis</TableHead>
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              <TableRow>
+                <TableCell className="font-medium">MOD-01</TableCell>
+                <TableCell>Fondasi App Router</TableCell>
+                <TableCell><Badge variant="default" className="bg-green-600">Tersedia</Badge></TableCell>
+                <TableCell className="text-right">-</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">MOD-02</TableCell>
+                <TableCell>UI & Styling (shadcn)</TableCell>
+                <TableCell><Badge variant="default" className="bg-green-600">Tersedia</Badge></TableCell>
+                <TableCell className="text-right">-</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">MOD-03</TableCell>
+                <TableCell>Database Prisma & PostgreSQL</TableCell>
+                <TableCell><Badge variant="outline">On Progress</Badge></TableCell>
+                <TableCell className="text-right">Minggu Depan</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </div>
+      </div>
+      
     </main>
   );
 }
