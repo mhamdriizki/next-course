@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { ThemeToggle } from "./ThemeToggle";
 
 export default function Navbar() {
   const pathname = usePathname(); // Nangkep URL saat ini
@@ -73,7 +74,9 @@ export default function Navbar() {
         }}
       >
         Member
-      </Link>         
+      </Link> 
+
+      <ThemeToggle/>
     </nav>
   );
 }
