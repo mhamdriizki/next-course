@@ -5,7 +5,7 @@ export default async function CommentsSection({ slug }: { slug: string }) {
 
   // 2. Simulasi Error Random (50% kemungkinan gagal)
   // Untuk live coding, lo bisa ganti Math.random() > 0.5 jadi `true` biar pasti error saat didemoin!
-  const isError = true; 
+  const isError = false; 
   
   if (isError) {
     throw new Error("Koneksi ke server komentar terputus!");
