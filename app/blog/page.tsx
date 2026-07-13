@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { getCategories, getPublishedPosts, getTrendingTags } from "@/lib/data/blog";
 import { PostList } from "./components/PostList";
 import { CategorySidebar } from "./components/CategorySidebar";
+import { LiveViewers } from "./components/LiveViewers";
 
 export default async function BlogPage() {
   // 1. MENGUKUR WAKTU (Untuk Pembuktian di Terminal)
@@ -21,6 +22,8 @@ export default async function BlogPage() {
   return (
     <div className="max-w-5xl mx-auto p-8">
       <h1 className="text-4xl font-extrabold text-slate-900 mb-2">Artikel Blog 📝</h1>
+      {/* Jangan lupa bun add swr */}
+      <LiveViewers/>
       <p className="text-slate-500 mb-8">
         Trending saat ini: {trendingTags.join(", ")}
       </p>
