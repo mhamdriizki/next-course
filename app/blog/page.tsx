@@ -3,6 +3,7 @@ import { getCategories, getPublishedPosts, getTrendingTags } from "@/lib/data/bl
 import { PostList } from "./components/PostList";
 import { CategorySidebar } from "./components/CategorySidebar";
 import { LiveViewers } from "./components/LiveViewers";
+import { PopularPosts } from "./components/PopularPosts";
 
 export default async function BlogPage() {
   // 1. MENGUKUR WAKTU (Untuk Pembuktian di Terminal)
@@ -33,6 +34,8 @@ export default async function BlogPage() {
         <div className="md:col-span-2">
           {/* Komponen Client dari Modul 6.3 */}
           <PostList posts={posts} />
+
+          <PopularPosts/>
         </div>
 
         {/* Kolom Kanan: Sidebar Kategori */}
